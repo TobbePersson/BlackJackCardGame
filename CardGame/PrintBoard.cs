@@ -58,6 +58,7 @@ namespace CardGame
                         Console.Write(" ");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
+                    Console.WriteLine();
                 }
                 else
                 {

@@ -90,20 +90,26 @@ namespace CardGame
 
             while (true)
             {
-                Console.Write("Enter lowest bet: ");
+                Console.Write("Enter a limit for the lowest bet: ");
                 bool lowestOK = int.TryParse(Console.ReadLine(), out lowestBet);
                 if (lowestOK == false)
                     Console.WriteLine("Please enter a real number for lowest bet.");
+                else if(lowestBet <= 0)
+                    Console.WriteLine("Lowest bet can not be zero or negative amount. Please anter a new amount.");
                 else
                     break;
             }
 
             while (true)
             {
-                Console.Write("Enter highest bet: ");
+                Console.Write("Enter a limit for the highest bet: ");
                 bool highestOK = int.TryParse(Console.ReadLine(), out highestBet);
                 if (highestOK == false)
                     Console.WriteLine("Please enter a real number for highest bet.");
+                else if(highestBet > totalMoney)
+                    Console.WriteLine("Higest bet can not be higher than the total amount of money. Please set a new limit for highest bet.");
+                else if(highestBet < lowestBet)
+                    Console.WriteLine("Sorry it is not possible to have limiti of higest bet lower than the allowed lowest bet. Please enter a new amount.");
                 else
                     break;
             }
@@ -114,6 +120,10 @@ namespace CardGame
                 bool numberOfPlayersOK = int.TryParse(Console.ReadLine(), out numberOfPlayers);
                 if (numberOfPlayersOK == false)
                     Console.WriteLine("Please enter a real number for number of players.");
+                else if(numberOfPlayers <= 0)
+                    Console.WriteLine("Number of players can´t be less than zero!!");
+                else if(numberOfPlayers > 60)
+                    Console.WriteLine("Sorry but the number of players are limited to 60. Please enter 1-6 players.");
                 else
                     break;
             }

@@ -29,19 +29,31 @@ namespace CardGame
 
         internal static void CheckIfPlayerHasMoney(List<Player> players, int lowestBet)
         {
-            int playerNumber = 0;
-
             foreach (var player in players)
             {
                 if(player.PlayerName != "Dealer")
                 {
                     if(player.PlayerMoney > lowestBet)
                     {
-                        Console.Write($"{player.PlayerName} do you want to play again (yes/no)?: ");
-                        if (Console.ReadLine().ToLower() == "yes")
-                            player.Satisfied = false;
-                        else
-                            player.Satisfied = true;
+                        while (true)
+                        {
+                            Console.Write($"{player.PlayerName} do you want to play again (y or n)?: ");
+                            string answer = Console.ReadLine();
+                            if (answer.ToLower() == "y")
+                            {
+                                player.Satisfied = false;
+                                break;
+                            }
+                            else if (answer.ToLower() == "n")
+                            {
+                                player.Satisfied = true;
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You didn´t anser y for yes or n for no. Please try agin.");
+                            }
+                        }
                     }
                     else
                     {
@@ -142,7 +154,6 @@ namespace CardGame
                     Console.WriteLine($"Sorry {player.PlayerName}, {players[players.Count - 1].PlayerName} wins");
                     Console.WriteLine($"{player.PlayerName} you lost ${player.playerBet}, you now have ${player.PlayerMoney}.");
                     Console.WriteLine();
-
                 }
             }
         }
@@ -185,22 +196,30 @@ namespace CardGame
                         string getCard = "";
                         if(player.CardPoints < 21 && player.Satisfied == false)
                         {
-                            Console.Write($"{player.PlayerName} do you want one more card or do you stop (play/stop)?: ");
-                            getCard = Console.ReadLine();
-
-                            if (getCard.ToLower() == "play")
+                            while (true)
                             {
-                                var (playerCards, newShuffelCards) = DealCards(shuffeledCards, 1);
-                                player.PlayerCards.Add(playerCards[0]);
-                                shuffeledCards = newShuffelCards;
-                                CalculateDeals(players);
-                                PrintBoard.ShowCardsFirstTime(players);
+                                Console.Write($"{player.PlayerName} do you want one more card or do you stay ((p)lay/(s)tay)?: ");
+                                getCard = Console.ReadLine();
 
-                            }
-                            else
-                            {
-                                player.Satisfied = true;
-                                break;
+                                if (getCard.ToLower() == "p")
+                                {
+                                    var (playerCards, newShuffelCards) = DealCards(shuffeledCards, 1);
+                                    player.PlayerCards.Add(playerCards[0]);
+                                    shuffeledCards = newShuffelCards;
+                                    CalculateDeals(players);
+                                    PrintBoard.ShowCardsFirstTime(players);
+                                    break;
+                                }
+                                else if (getCard.ToLower() == "s")
+                                {
+                                    PrintBoard.ShowCardsFirstTime(players);
+                                    player.Satisfied = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Enter 'p' for one more card or 's' to stay.");
+                                }
                             }
                         }
                         else
