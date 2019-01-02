@@ -44,20 +44,38 @@ namespace CardGame
                         if(player.PlayerCards[i].Suite == Suites.Diamond || player.PlayerCards[i].Suite == Suites.Hearts)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
+                            Console.BackgroundColor = ConsoleColor.White;
                         }
                         else
                         {
                             Console.ForegroundColor = ConsoleColor.Black;
+                            Console.BackgroundColor = ConsoleColor.White;
                         }
 
                         Console.Write($"{player.PlayerCards[i].Symbol} ");
                         Console.Write($"{player.PlayerCards[i].Value} ");
+                        Console.ResetColor();
+                        Console.Write(" ");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"{player.PlayerName} card is {player.PlayerCards[0].Symbol} {player.PlayerCards[0].Value}");
+                    Console.Write($"{player.PlayerName} card is ");
+
+                    if (player.PlayerCards[0].Suite == Suites.Diamond || player.PlayerCards[0].Suite == Suites.Hearts)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
+                    }
+
+                    Console.Write($"{player.PlayerCards[0].Symbol} {player.PlayerCards[0].Value}");
+                    Console.ResetColor();
                 }
                 Console.WriteLine();
             }
@@ -75,14 +93,18 @@ namespace CardGame
                     if (player.PlayerCards[i].Suite == Suites.Diamond || player.PlayerCards[i].Suite == Suites.Hearts)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
+                        Console.BackgroundColor = ConsoleColor.White;
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
+                        Console.BackgroundColor = ConsoleColor.White;
                     }
 
                     Console.Write($"{player.PlayerCards[i].Symbol} ");
                     Console.Write($"{player.PlayerCards[i].Value} ");
+                    Console.ResetColor();
+                    Console.Write(" ");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
                 Console.Write($"{player.CardPoints}");
