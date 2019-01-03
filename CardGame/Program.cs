@@ -155,7 +155,7 @@ namespace CardGame
         {
             BlackJack game = new BlackJack();
 
-            PrintBoard.AskForBets();
+            PrintBoard.AskForBets(players);
 
             game.PlaceBet(players, lowestBet, highestBet);
 

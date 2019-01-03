@@ -18,22 +18,38 @@ namespace CardGame
             Console.WriteLine("       B    B  L          A       A    C         K  K          J    A       A    C         K  K  ");
             Console.WriteLine("       B    B  L         A         A    CC       K   K    J   J    A         A    CC       K   K ");
             Console.WriteLine("       BBBBB   LLLLLLL  A           A     CCCCC  K    K    JJJ    A           A     CCCCC  K    K");
-            Console.WriteLine("---------------------------------------------------------------------------------------------------------");
+            Console.WriteLine();
+            Console.WriteLine("♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥♦♣♠♥");
             Console.WriteLine();
         }
 
-        internal static void AskForBets()
+        internal static void AskForBets(List<Player> players)
         {
             Console.Clear();
             Intro();
+            ShowPlayersMoney(players);
             Console.WriteLine("$$$$$ Players please enter your bets. $$$$$");
             Console.WriteLine("-------------------------------------------");
+        }
+
+        private static void ShowPlayersMoney(List<Player> players)
+        {
+            Console.Write($"Players money: ");
+
+            foreach (var player in players)
+            {
+                if(player.PlayerName != "Dealer")
+                    Console.Write($"{player.PlayerName} ${player.PlayerMoney} :: ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         internal static void ShowCardsFirstTime(List<Player> players)
         {
             Console.Clear();
             Intro();
+            ShowPlayersMoney(players);
             foreach (var player in players)
             {
                 if(player.PlayerName != "Dealer")
@@ -86,6 +102,7 @@ namespace CardGame
         {
             Console.Clear();
             Intro();
+            ShowPlayersMoney(players);
             foreach (var player in players)
             {
                 Console.WriteLine($"{player.PlayerName} cards: ");
