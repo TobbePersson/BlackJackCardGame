@@ -53,6 +53,6 @@ namespace CardGame
             var shuffeledDeck = randomList.Select(x => deckInList.deck[x]).ToList();
 
             return shuffeledDeck;
-        }
+         }
     }
 }

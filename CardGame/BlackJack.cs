@@ -70,6 +70,8 @@ namespace CardGame
             {
                 int numberOfAce = 0;
 
+                //var ace = player.PlayerCards.Where(x => x == )
+
                 foreach (var card in player.PlayerCards)
                 {
                     if(card.Value == Values.Ace)
@@ -198,7 +200,7 @@ namespace CardGame
                         {
                             while (true)
                             {
-                                Console.Write($"{player.PlayerName} do you want one more card or do you stay ((p)lay/(s)tay)?: ");
+                                Console.Write($"{player.PlayerName} do you want one more card or do you stay ((P)LAY or (S)TAY)?: ");
                                 getCard = Console.ReadLine();
 
                                 if (getCard.ToLower() == "p")
@@ -218,7 +220,7 @@ namespace CardGame
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Enter 'p' for one more card or 's' to stay.");
+                                    Console.WriteLine("Enter 'P' for one more card or 'S' to stay.");
                                 }
                             }
                         }

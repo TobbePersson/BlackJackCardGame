@@ -43,28 +43,7 @@ namespace CardGame
             EndGame();  
         }
 
-        private static void RemovePlayers(List<Player> players)
-        {
-            while (true)
-            {
-                int numberInPlayerList = 999;
-                for (int i = 0; i < players.Count; i++)
-                {
-                    Player player = (Player)players[i];
-                    if (player.Satisfied == true)
-                    {
-                        numberInPlayerList = i;
-                        break;
-                    }
-                }
-
-                if(numberInPlayerList != 999)
-                    players.RemoveAt(numberInPlayerList);
-
-                if(players.Where(x => x.Satisfied == true).Count() < 1)
-                    break;
-            }
-        }
+        
 
         private static (List<Player> players, int lowestBet, int highestBet) GetPlayers()
         {
@@ -180,6 +159,29 @@ namespace CardGame
 
             game.PayOrTakeMoney(players);
 
+        }
+
+        private static void RemovePlayers(List<Player> players)
+        {
+            while (true)
+            {
+                int numberInPlayerList = 999;
+                for (int i = 0; i < players.Count; i++)
+                {
+                    Player player = (Player)players[i];
+                    if (player.Satisfied == true)
+                    {
+                        numberInPlayerList = i;
+                        break;
+                    }
+                }
+
+                if (numberInPlayerList != 999)
+                    players.RemoveAt(numberInPlayerList);
+
+                if (players.Where(x => x.Satisfied == true).Count() < 1)
+                    break;
+            }
         }
 
         private static void EndGame()
